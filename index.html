@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>박준영 | About Me</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --ink:#111827; --muted:#536179; --blue:#2867d8;
+  --line:#dbe4f0; --soft:#eef5ff; --bg:#f7fbff;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+  color:var(--ink);
+  background:linear-gradient(180deg,#fff 0%,#f7fbff 58%,#fff 100%);
+}
+.wrap{width:min(1500px,92vw);margin:auto}
+header{
+  height:68px; display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid #e7edf5;
+}
+.brand{font-weight:900;letter-spacing:-.03em}
+.brand span{margin-left:20px;color:#8392aa;font-size:13px;letter-spacing:.28em}
+nav a{color:#334155;text-decoration:none;font-weight:700;margin-left:34px;font-size:14px}
+nav a.active{color:var(--blue);padding-bottom:22px;border-bottom:2px solid var(--blue)}
+
+.hero{
+  min-height:310px;
+  display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:48px;
+  padding:42px 0 30px;
+  position:relative;
+}
+.hero::after{
+  content:"";position:absolute;right:-4vw;top:0;width:49%;height:100%;z-index:-1;
+  background:linear-gradient(145deg,rgba(232,243,255,.35),rgba(203,225,249,.45));
+  border-radius:0 0 0 80px;
+}
+.eyebrow{color:#5f6b7a;font-size:13px;font-weight:800;letter-spacing:.35em;margin-bottom:18px}
+h1{
+  margin:0;
+  font-size:clamp(48px,4.3vw,70px);
+  line-height:1.17;
+  letter-spacing:-.055em;
+}
+h1 .line{display:block}
+.hero-note{
+  justify-self:end;
+  margin-right:10%;
+  color:#2d67c7;
+  font-size:20px;
+  line-height:1.7;
+  transform:rotate(-3deg);
+  font-weight:700;
+}
+.hero-note::after{content:"";display:block;width:180px;border-top:2px solid #4b7ed0;margin-top:10px}
+
+.section-head{margin:0 0 14px}
+.section-head h2{font-size:25px;margin:0 0 4px;letter-spacing:-.03em}
+.section-head p{margin:0;color:var(--muted);font-size:14px}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:30px}
+.card{
+  background:rgba(255,255,255,.96);
+  border:1px solid #e4ebf4;
+  border-radius:20px;
+  box-shadow:0 10px 28px rgba(31,64,112,.08);
+  padding:20px 22px 18px;
+}
+.card-top{display:flex;align-items:center;gap:13px;margin-bottom:10px}
+.num{
+  min-width:54px;height:48px;border-radius:16px;background:#eaf3ff;
+  color:#1761d1;font-weight:900;font-size:20px;
+  display:flex;align-items:center;justify-content:center;
+}
+.card h3{margin:0;font-size:20px;letter-spacing:-.035em}
+.summary{color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 10px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.tag{
+  background:#edf4ff;color:#2558ad;border-radius:999px;
+  padding:5px 10px;font-size:12px;font-weight:800;
+}
+.details{border-top:1px solid var(--line)}
+.row{
+  display:grid;grid-template-columns:58px 1fr;gap:12px;
+  padding:10px 0;border-bottom:1px solid var(--line);
+}
+.row:last-child{border-bottom:0;padding-bottom:0}
+.label{font-size:13px;font-weight:900;color:#263a59}
+.row p{margin:0;color:#44536a;font-size:12.5px;line-height:1.45}
+footer{text-align:center;color:#8b9ab0;font-size:11px;letter-spacing:.22em;padding:2px 0 18px}
+
+@media (max-width:999px){
+  nav{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto;padding:36px 0 24px}
+  .hero-note{display:none}
+  .hero::after{display:none}
+  h1{font-size:clamp(42px,10vw,62px)}
+  .cards{grid-template-columns:1fr}
+}
+@media (min-width:1000px) and (max-height:820px){
+  header{height:54px}
+  nav a.active{padding-bottom:15px}
+  .hero{min-height:235px;padding:25px 0 20px}
+  .eyebrow{margin-bottom:10px}
+  h1{font-size:52px;line-height:1.12}
+  .hero-note{font-size:17px}
+  .section-head{margin-bottom:8px}
+  .section-head h2{font-size:21px}
+  .card{padding:15px 17px 13px}
+  .card-top{margin-bottom:7px}
+  .num{height:40px;min-width:48px;font-size:17px}
+  .card h3{font-size:17px}
+  .summary{font-size:12px;margin-bottom:7px}
+  .tags{margin-bottom:8px}
+  .tag{font-size:11px;padding:4px 8px}
+  .row{padding:7px 0;grid-template-columns:50px 1fr;gap:9px}
+  .label{font-size:12px}
+  .row p{font-size:11.5px;line-height:1.35}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<style>
+/* 세 카드의 태그/상황/행동/결과 시작선을 동일하게 정렬 */
+@media (min-width:1000px){
+  .card{
+    display:grid;
+    grid-template-rows:auto 3.1em 36px 1fr;
+  }
+  .card-top{align-self:start}
+  .summary{
+    min-height:3.1em;
+    margin-bottom:0;
+  }
+  .tags{
+    min-height:36px;
+    align-content:start;
+    margin-bottom:0;
+  }
+  .details{
+    align-self:start;
+  }
+  .row{
+    min-height:64px;
+    align-items:start;
+  }
+}
+</style>
+
+
+<style>
+/* 히어로 영역 최종 정리: 오른쪽 별도 구역 없이 하나의 배경 */
+.hero{
+  grid-template-columns:1.25fr .75fr !important;
+  background:transparent !important;
+}
+.hero::after,
+.hero::before{
+  display:none !important;
+}
+.hero-note{
+  justify-self:end !important;
+  margin-right:4% !important;
+  color:#45658f !important;
+  font-size:18px !important;
+  line-height:1.65 !important;
+  transform:none !important;
+  letter-spacing:-.02em !important;
+}
+.hero-note::after{
+  width:150px !important;
+  border-top:1px solid #9fb3cc !important;
+  margin-top:9px !important;
+}
+
+/* 카드 문장이 글자 단위로 어색하게 끊기지 않도록 조정 */
+.card,
+.summary,
+.row p{
+  word-break:keep-all !important;
+  overflow-wrap:break-word !important;
+}
+.summary{
+  letter-spacing:-.025em !important;
+}
+.row p{
+  letter-spacing:-.02em !important;
+}
+
+/* 데스크톱에서 필요한 문장은 자연스럽게 다음 줄로 */
+@media (min-width:1000px){
+  .card{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+  .cards{
+    gap:14px !important;
+  }
+}
+</style>
+
+<style>
+.hero-keywords{
+  margin-top:12px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+  color:#5f6b7a;
+  white-space:nowrap;
+}
+</style>
+
+<style>
+.scope{
+  margin-top:10px;
+  padding:16px 0 22px;
+  border-top:1px solid #e4ebf4;
+  color:#5f6b7a;
+}
+.scope h2{
+  margin:0 0 7px;
+  font-size:13px;
+  color:#536179;
+}
+.scope p{
+  margin:3px 0;
+  font-size:12px;
+  line-height:1.5;
+}
+</style>
+
+
+<style>
+header nav a{
+  position:relative;
+}
+header nav a.active{
+  color:#2867d8;
+}
+</style>
+
+
+<style>
+header nav a.active{
+  color:#2867d8;
+}
+</style>
+
+</head>
+<body>
+<header class="wrap">
+  <div class="brand">박준영 <span>PORTFOLIO</span></div>
+  <nav aria-label="주요 메뉴">
+    <a class="active" href="#home">Home</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">MY STORY</div>
+      <h1><span class="line">경험과 배움을 통해 성장하고,</span><span class="line">맡은 일은 끝까지 해냅니다.</span></h1>
+    </div>
+    <div class="hero-note" aria-hidden="true">어제보다 오늘이<br>더 나은 사람을 꿈꿉니다.
+      <div class="hero-keywords">Experience · Growth · Responsibility</div></div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <h2>나를 보여주는 세 가지</h2>
+      <p>말보다 경험과 행동으로 저를 소개합니다.</p>
+    </div>
+
+    <div class="cards" id="experience">
+      <article class="card">
+        <div class="card-top"><div class="num">01</div><h3>실무로 쌓은 보안 역량</h3></div>
+        <p class="summary">보안 평가부터 교육, 정보체계 관리까지 조직의 보안을 유지하기 위한<br>다양한 실무를 경험했습니다.</p>
+        <div class="tags"><span class="tag">보안 평가</span><span class="tag">보안 교육</span><span class="tag">정보체계 관리</span></div>
+        <div class="details">
+          <div class="row"><div class="label">상황</div><p>보안 수준을 유지하고 평가에 대비하기 위해 체계적인 보안 관리가 필요했습니다.</p></div>
+          <div class="row"><div class="label">행동</div><p>평가 항목을 점검하고 보안 교육과 정보체계 관리를 수행했습니다.</p></div>
+          <div class="row"><div class="label">결과</div><p>평가 지적사항을 조치하고 후속 관리로 미흡한 부분을 개선했습니다.</p></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="num">02</div><h3>배움으로 이어가는 성장</h3></div>
+        <p class="summary">IT·보안 분야에 필요한 지식과 기술을 꾸준히 학습하며 역량을 넓혀가고 있습니다.</p>
+        <div class="tags"><span class="tag">정보처리기사</span><span class="tag">SQLD</span><span class="tag">SKT-ALEPH 교육</span></div>
+        <div class="details">
+          <div class="row"><div class="label">상황</div><p>IT·보안 분야의 전문성과 실무 역량을 갖추기 위한 학습이 필요했습니다.</p></div>
+          <div class="row"><div class="label">행동</div><p>정보처리기사와 SQLD를 준비해 취득했으며, SKT-ALEPH 교육에서 서버·네트워크 등 IT 인프라 실습을 수행하고 있습니다.</p></div>
+          <div class="row"><div class="label">결과</div><p>정보처리기사와 SQLD를 취득하고 실습 중심의 교육으로 역량을 확장하고 있습니다.</p></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="num">03</div><h3>끝까지 책임지는 실행력</h3></div>
+        <p class="summary">맡은 역할에 책임감을 가지고 필요한 방법을 찾아 끝까지 실행합니다.</p>
+        <div class="tags"><span class="tag">협업</span><span class="tag">문제 해결</span><span class="tag">사전 대비</span></div>
+        <div class="details">
+          <div class="row"><div class="label">상황</div><p>짧은 준비 기간과 부족한 장비·자원 속에서 행사를 준비해야 했습니다.</p></div>
+          <div class="row"><div class="label">행동</div><p>필요한 장비와 통신 환경을 파악하고 관련 부대·기관과 협조해 부족한 부분을 확보하고 사전 점검했습니다.</p></div>
+          <div class="row"><div class="label">결과</div><p>필요한 환경을 확보해 행사 당일 맡은 업무를 차질 없이 수행했습니다.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<section class="scope wrap" aria-labelledby="scope-title">
+  <h2 id="scope-title">공개 범위</h2>
+  <p><strong>공개:</strong> 보안 실무 경험 · 학습 및 자격 · 업무 수행 경험</p>
+  <p><strong>비공개:</strong> 개인 연락처 · 주소/생년월일 등 개인정보 · 공개하기 어려운 보안 정보</p>
+</section>
+
+
+
+<script>
+(() => {
+  const homeLink = document.querySelector('header nav a[href="#home"]');
+  const aboutLink = document.querySelector('header nav a[href="#about"]');
+  if (!homeLink || !aboutLink) return;
+
+  function setActive(target) {
+    const aboutActive = target === 'about';
+    homeLink.classList.toggle('active', !aboutActive);
+    aboutLink.classList.toggle('active', aboutActive);
+  }
+
+  function updateNav() {
+    setActive(window.scrollY > 20 ? 'about' : 'home');
+  }
+
+  homeLink.addEventListener('click', () => setActive('home'));
+  aboutLink.addEventListener('click', () => setActive('about'));
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  updateNav();
+})();
+</script>
+
+</body>
+</html>
