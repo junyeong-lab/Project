@@ -60,7 +60,7 @@ footer{border-top:1px solid var(--line);padding:25px 0 45px;color:var(--muted);f
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="container head"><a class="brand" href="#home">박준영 · PORTFOLIO</a>
-<nav aria-label="주요 메뉴"><a href="#story">나의 이야기</a><a href="#strengths">세 가지 능력</a><a href="#evidence">기록의 숫자</a><a href="#projects">대표작</a><a href="#contact">연락</a></nav></div></header>
+<nav aria-label="주요 메뉴"><a href="#story">나의 이야기</a><a href="#strengths">세 가지 능력</a><a href="#evidence">기록의 숫자</a><a href="#projects">대표작</a><a href="#documents">지원 문서</a><a href="#contact">연락</a></nav></div></header>
 <main id="main">
 <section class="hero" id="home"><div class="container">
 <div class="eyebrow">Security · Collaboration · Growth</div>
@@ -98,17 +98,27 @@ footer{border-top:1px solid var(--line);padding:25px 0 45px;color:var(--muted);f
 <div class="section-eyebrow">Evidence</div><h2 id="evidence-title">숫자로 남긴 과정</h2>
 <p class="section-desc">모든 수치는 2026년 10월 20일 확인 시점 기준입니다. 교육 과정 전체 13주가 끝난 뒤의 최종 성적을 뜻하지 않습니다.</p>
 <div class="stat-grid">
-<div class="stat"><div class="stat-number">97.8%</div><div class="stat-label">확정 출석률</div><div class="stat-source">확정 출석 45일 / 훈련일 46일 · 출처: 내 출석 기록</div></div>
-<div class="stat"><div class="stat-number">45 / 44</div><div class="stat-label">아침 / 마무리 기록</div><div class="stat-source">2026.08.11~10.19 · 출처: 리추얼 기록</div></div>
-<div class="stat"><div class="stat-number">14건</div><div class="stat-label">과제 제출 이력</div><div class="stat-source">재제출 포함 제출 건수 · 출처: 내 제출 현황</div></div>
+<div class="stat"><div class="stat-number" id="bra-attendance-rate">97.8%</div><div class="stat-label">확정 출석률</div><div class="stat-source">확정 출석 45일 / 훈련일 46일 · 출처: 내 출석 기록</div></div>
+<div class="stat"><div class="stat-number" id="bra-ritual-stats">45 / 44</div><div class="stat-label">아침 / 마무리 기록</div><div class="stat-source">2026.08.11~10.19 · 출처: 리추얼 기록</div></div>
+<div class="stat"><div class="stat-number" id="bra-submission-count">14건</div><div class="stat-label">과제 제출 이력</div><div class="stat-source">재제출 포함 제출 건수 · 출처: 내 제출 현황</div></div>
 </div><p class="scope-note">2026년 10월 19일 몸 상태가 좋지 않았던 날에도 리추얼 기록을 남기고 공식 출석을 이어갔습니다. 출석 기록과 당일 리추얼을 연결한 사례입니다.</p>
 </section>
 <section class="content container" id="projects" aria-labelledby="projects-title">
 <div class="section-eyebrow">Selected work</div><h2 id="projects-title">대표작</h2>
 <div class="work-grid">
-<article class="work"><span class="tag">T10 · 연구논문</span><h3>CVSS v3.1 심각도와 CISA KEV 등재 비율의 연관성 분석</h3><p>2024년 공개 취약점 데이터를 비교해 심각도에 따른 KEV 등재 비율을 확인했습니다. 32,102건의 분석 표본에서 Critical과 Medium의 등재 비율을 비교했습니다.</p><p class="meta">데이터 분석 결과: Critical 1.536%, Medium 0.081% · 관찰된 연관성으로만 해석</p><p class="notice">공개 논문 원문 파일 연결: 준비 중</p></article>
+<article class="work"><span class="tag">T10 · 연구논문</span><h3>CVSS v3.1 심각도와 CISA KEV 등재 비율의 연관성 분석</h3><p>2024년 공개 취약점 데이터를 비교해 심각도에 따른 KEV 등재 비율을 확인했습니다. 32,102건의 분석 표본에서 Critical과 Medium의 등재 비율을 비교했습니다.</p><p class="meta">데이터 분석 결과: Critical 1.536%, Medium 0.081% · 관찰된 연관성으로만 해석</p><p class="meta"><a href="https://github.com/junyeong-lab/Project/blob/br-a-draft-20261020/research/T10_연구논문.md" target="_blank" rel="noopener noreferrer">논문 원문 공개 열람 →</a></p></article>
 <article class="work"><span class="tag">T13 · 앱 예정</span><h3>다음 대표작을 준비하고 있습니다</h3><p>13번 과제를 마친 뒤 실제 앱의 설명과 접근 가능한 주소를 이 위치에 추가할 예정입니다.</p><p class="notice">예정 자리 · 앱 결과물 미등록</p></article>
 </div>
+</section>
+<section class="content container" id="documents" aria-labelledby="documents-title">
+<div class="section-eyebrow">Career documents</div><h2 id="documents-title">취업 지원 문서</h2>
+<p class="section-desc">현재 확인된 경험을 바탕으로 작성한 문서입니다. 공고별 지원 전 최종 검토가 필요합니다.</p>
+<div class="skill-grid">
+<article class="skill"><h3>이력서</h3><p>관련 경력·자격·학습 성과를 한눈에 확인할 수 있습니다.</p><p class="meta"><a href="https://github.com/junyeong-lab/Project/blob/br-a-draft-20261020/documents/BR-A_이력서_박준영.md" target="_blank" rel="noopener noreferrer">이력서 보기 →</a></p></article>
+<article class="skill"><h3>자기소개서</h3><p>2023년의 어려움에서 태도 변화와 협업, 현재의 성장으로 이어지는 이야기입니다.</p><p class="meta"><a href="https://github.com/junyeong-lab/Project/blob/br-a-draft-20261020/documents/BR-A_자기소개서_박준영.md" target="_blank" rel="noopener noreferrer">자기소개서 보기 →</a></p></article>
+<article class="skill"><h3>경력기술서</h3><p>각 경험을 세 가지 능력 및 상황·행동·결과와 연결했습니다.</p><p class="meta"><a href="https://github.com/junyeong-lab/Project/blob/br-a-draft-20261020/documents/BR-A_경력기술서_박준영.md" target="_blank" rel="noopener noreferrer">경력기술서 보기 →</a></p></article>
+</div>
+<div id="bra-approved-section" hidden><h3>직접 승인한 새로운 기록</h3><div id="bra-approved-paragraphs"></div></div>
 </section>
 <section class="container contact" id="contact" aria-labelledby="contact-title">
 <h2 id="contact-title">함께 해결할 문제를 이야기하고 싶습니다</h2>
@@ -118,4 +128,28 @@ footer{border-top:1px solid var(--line);padding:25px 0 45px;color:var(--muted);f
 </section>
 </main>
 <footer><div class="container">© 2026 박준영 · 공개 범위: 본인 경력·학습 결과·익명화된 근거만 사용</div></footer>
+<script src="./site-data.js"></script>
+<script>
+(function(){
+  const data=window.BRA_DATA;
+  if(!data || !data.metrics)return;
+  const m=data.metrics;
+  const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+  set('bra-attendance-rate',m.attendance_rate_percent.toFixed(1)+'%');
+  set('bra-ritual-stats',m.ritual_morning_entries+' / '+m.ritual_evening_entries);
+  set('bra-submission-count',m.submission_entries_including_resubmissions+'건');
+  if(Array.isArray(data.approved_paragraphs) && data.approved_paragraphs.length){
+    const section=document.getElementById('bra-approved-section');
+    const holder=document.getElementById('bra-approved-paragraphs');
+    if(section && holder){
+      for(const item of data.approved_paragraphs){
+        const p=document.createElement('p');
+        p.textContent=(item.date||'')+' — '+(item.candidate||'')+' (출처: '+(item.source||'')+')';
+        holder.appendChild(p);
+      }
+      section.hidden=false;
+    }
+  }
+})();
+</script>
 </body></html>
