@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="박준영 BR-A 포트폴리오 · T10 논문">
+<title>T10 논문 | 박준영 BR-A</title>
+<link rel="stylesheet" href="./document-style.css"></head>
+<body id="start"><header class="topbar"><div class="top-inner"><a class="sitebrand" href="./index.html">← 박준영 · BR-A</a>
+<div class="toplinks"><a href="./index.html#documents">지원 문서</a><a href="./research/T10_연구논문.md">원문 (.md)</a><button class="print" onclick="window.print()">인쇄 / PDF 저장</button></div></div></header>
+<div class="layout"><aside aria-label="문서 목차"><h2>목차</h2><a class="" href="#sec-2">초록</a>
+<a class="" href="#sec-3">I. 서론</a>
+<a class="sub" href="#sec-4">1.1 연구 배경과 문제의식</a>
+<a class="sub" href="#sec-5">1.2 연구 질문, 최종 가설 및 반증 조건</a>
+<a class="sub" href="#sec-6">1.3 관심 분야와 주제 선택 과정</a>
+<a class="sub" href="#sec-7">1.4 최종 주제 선택과 작성자 판단 기록</a>
+<a class="" href="#sec-8">II. 관련 연구 및 이론적 배경</a>
+<a class="sub" href="#sec-9">2.1 CVSS 심각도와 KEV 등재의 차이</a>
+<a class="sub" href="#sec-10">2.2 선행연구의 검토</a>
+<a class="" href="#sec-11">III. 연구방법</a>
+<a class="sub" href="#sec-12">3.1 데이터 출처와 관측 시점</a>
+<a class="sub" href="#sec-13">3.2 표본 선정 및 제외 기준</a>
+<a class="sub" href="#sec-14">3.3 변수 정의와 점수 선택 기준</a>
+<a class="sub" href="#sec-15">3.4 분석 및 재현 절차</a>
+<a class="" href="#sec-16">IV. 연구결과</a>
+<a class="sub" href="#sec-17">4.1 분석 표본의 구성</a>
+<a class="sub" href="#sec-18">4.2 Critical과 Medium의 사전 가설 검증</a>
+<a class="sub" href="#sec-19">4.3 사전 가설 밖의 결과와 예외</a>
+<a class="" href="#sec-20">V. 논의</a>
+<a class="sub" href="#sec-21">5.1 결과 해석과 취약점 관리의 시사점</a>
+<a class="sub" href="#sec-22">5.2 다른 결과를 설명할 수 있는 가능성</a>
+<a class="sub" href="#sec-23">5.3 연구 한계</a>
+<a class="sub" href="#sec-24">5.4 설계 변경 및 결과 보존</a>
+<a class="" href="#sec-25">VI. 결론</a>
+<a class="" href="#sec-26">참고문헌</a>
+<a class="" href="#sec-27">부록 A. 논거 및 문헌 검증 기록</a>
+<a class="" href="#sec-28">부록 B. 재현 방법과 원자료 무결성</a></aside>
+<main class="paper" id="article"><div class="articlehead"><div class="kicker">SECURITY RESEARCH</div>
+<h1>T10 논문</h1><p>박준영 · BR-A 공개 포트폴리오 · 원문 내용 유지 · 모바일/인쇄 최적화</p></div>
+<article class="article"><h1 id="sec-1">2024년 공개 취약점의 CVSS v3.1 심각도와 CISA KEV 등재 비율의 연관성 분석</h1>
+<p><strong>작성자:</strong> 박준영<br><strong>작성일:</strong> 2026년 10월 18일<br><strong>연구 분야:</strong> 정보보안 · 취약점 평가 및 조치 우선순위<br><strong>연구 유형:</strong> 공개자료 기반 관찰연구</p>
+<h2 id="sec-2">초록</h2>
+<p>취약점 조치 우선순위 설정에서는 기술적 심각도와 실제 악용 근거를 구분해야 한다. 본 연구는 2024년 공개된 CVE 중 CVSS v3.1 점수가 확인되는 32,102건을 NVD에서 추출하고, 2026년 10월 16일 기준 CISA KEV 목록과 CVE 번호로 결합하였다. Critical 4,231건 중 65건(1.536%)과 Medium 15,993건 중 13건(0.081%)이 KEV에 등재되어 Critical의 등재 비율이 약 18.9배 높았다. 이는 사전 가설의 방향과 일치하지만 인과관계나 실제 악용 확률을 뜻하지 않는다.</p>
+<p><strong>주요어:</strong> CVSS v3.1, CISA KEV, NVD, CVE, 취약점 관리, 위험 우선순위</p>
+<h2 id="sec-3">I. 서론</h2>
+<h3 id="sec-4">1.1 연구 배경과 문제의식</h3>
+<p>보안 담당자는 다수의 공개 취약점 가운데 어떤 항목을 먼저 점검하고 조치할지 판단해야 한다. 공통 취약점 등급 체계인 CVSS는 기술적 심각도를 일정한 방식으로 표현하지만, 특정 취약점이 실제 공격에 활용되었는지 자체를 판정하는 지표는 아니다[1]. CISA의 Known Exploited Vulnerabilities(KEV) 목록은 실제 악용 근거가 확인된 취약점을 별도로 제공한다[3]. 이 차이는 보안점검과 취약점 조치의 우선순위를 정할 때 중요하다.</p>
+<p>선행연구에서는 공개 취약점 정보와 실제 악용의 관계를 여러 관점에서 분석해 왔다. Bozorgi 등[4]은 공개 취약점의 다양한 특성을 이용한 예측을 연구했고, Allodi와 Massacci[5]는 CVSS 점수만을 근거로 조치 순서를 정하는 방식의 한계를 조사했다. Jacobs 등[7, 8]은 실제 관측된 악용 정보를 활용한 우선순위 결정과 별도의 악용 예측 방법을 연구했다. 따라서 본 연구는 CVSS만으로 악용 여부를 판정하려 하지 않고, 같은 기간에 공개된 취약점에서 CVSS 심각도 구간과 KEV 등재 비율 사이에 관찰 가능한 차이가 있는지를 확인한다.</p>
+<h3 id="sec-5">1.2 연구 질문, 최종 가설 및 반증 조건</h3>
+<p><strong>연구 질문:</strong> 2024년에 공개된 CVE의 CVSS v3.1 심각도 구간에 따라 2026년 10월 기준 CISA KEV 등재 비율이 다른가?</p>
+<p><strong>사전 확정 가설(H1):</strong> 2024년 공개 CVE 중 CVSS v3.1 점수가 Critical(9.0~10.0)인 취약점의 CISA KEV 등재 비율은 Medium(4.0~6.9)인 취약점보다 높을 것이다.</p>
+<p><strong>반증되는 관찰 결과:</strong> Critical 그룹의 KEV 등재 비율이 Medium 그룹보다 낮거나 같게 관찰될 경우 가설의 방향은 지지되지 않는다. 본 연구는 점수의 인과적 영향을 실험하지 않았으므로 ‘영향을 준다’는 표현 대신 ‘등재 비율이 다르다’라는 연관성으로 가설을 정의한다.</p>
+<h3 id="sec-6">1.3 관심 분야와 주제 선택 과정</h3>
+<p>본 연구의 관심 분야는 정보보안, 특히 취약점 관리와 보안점검이다. 초기에는 SSH 로그인 실패 탐지, 방화벽 정책과 서비스 접근 성공률, AI 보안점검 보고서의 누락 감소 등도 검토했다. SSH 연구는 실습용 로그가 실제 운영환경의 공격을 대표하기 어렵고, 방화벽 실험은 결과가 비교적 자명하며 실습 환경 구축이 필요하다. AI 보고서 연구는 품질 평가 기준과 반복 생성 조건을 통제하기 어려워 이번 연구 범위에서 제외했다. 공개된 두 기관의 원자료를 사용해 정의된 기간과 계산식을 재현할 수 있고, 취약점 조치 우선순위 업무와 연결되므로 현 주제를 선택했다.</p>
+<p>초기 질문인 ‘CVSS가 높을수록 실제 공격을 많이 받는가’는 실제 공격 발생 건수의 확보와 정의가 불명확했다. 이에 AI와의 논의 과정에서 분석 대상을 2024년 공개 CVE로 제한하고, CVSS v3.1의 Critical/Medium을 비교하며, 결과변수를 ‘실제 공격 횟수’가 아닌 ‘CISA KEV 목록 등재 여부’로 바꿔 측정 가능하게 만들었다. 이 변경은 본 분석 결과를 확인하기 전에 이루어졌다.</p>
+<h3 id="sec-7">1.4 최종 주제 선택과 작성자 판단 기록</h3>
+<p><strong>AI에게 맡긴 일:</strong> 정보보안 관련 연구 주제 후보 도출, 선행연구 탐색, 공개 데이터 분석 코드 작성, 통계 계산 및 논문 초안 작성을 맡겼습니다.</p>
+<p><strong>내가 직접 판단한 일:</strong> 정보보안 직무와의 연관성, 실제 데이터 확보 가능성, 연구의 재현성을 고려해 CVSS 심각도와 KEV 등재 비율의 관계를 최종 연구 주제로 선택했습니다.</p>
+<p><strong>AI의 제안을 검토한 일:</strong> 여러 연구 주제 중 직접 데이터를 확보할 수 있는 연구를 선택했고, 분석 결과가 가설과 일치하더라도 CVSS 점수만으로 실제 악용 여부를 단정할 수 없다는 한계를 논문에 반영하도록 했습니다.</p>
+<h2 id="sec-8">II. 관련 연구 및 이론적 배경</h2>
+<h3 id="sec-9">2.1 CVSS 심각도와 KEV 등재의 차이</h3>
+<p>CVSS v3.1 Base Score는 0.0~10.0점으로 기술적 취약점의 심각도를 표현한다. 구간은 None(0.0), Low(0.1~3.9), Medium(4.0~6.9), High(7.0~8.9), Critical(9.0~10.0)이다[1]. 본 연구는 버전이 다른 CVSS v4.0 등을 v3.1로 환산하지 않는다. KEV 목록은 CVE 번호와 등재일을 포함하므로 NVD의 CVE 번호와 연결할 수 있다[2, 3]. 다만 <strong>KEV 미등재가 악용 부재의 증거는 아니며</strong>, 등재 자체가 악용 횟수를 의미하는 것도 아니다.</p>
+<h3 id="sec-10">2.2 선행연구의 검토</h3>
+<p>Bozorgi 등[4]은 공개 취약점의 텍스트·시점·참조 정보 등 복수의 요소로 악용 관련 결과를 예측했다. Allodi와 Massacci[5]는 사례-대조군 연구를 통해 CVSS 점수만으로 실제 악용과 대응 우선순위를 판단하는 접근을 비판적으로 평가했다. Allodi[6]는 취약점 거래와 공격 현실화에 관한 경제적 요인을 연구했다. Jacobs 등[7]은 다양한 실제 악용 관측 자료를 결합하여 조치전략의 효율성과 커버리지를 비교했고, Jacobs 등[8]은 기술적 심각도와 별도로 악용 가능성을 예측하는 EPSS를 제안했다.</p>
+<p>이들은 취약점 심각도와 악용 관련 지표를 구분해야 한다는 연구 배경을 제공한다. 한편 본 연구가 추가로 확인하는 것은 <strong>2026년 10월 시점 공식 공개자료에 나타난 2024년 공개 CVE의 Critical 대 Medium KEV 등재율</strong>이라는 한정된 기술통계이다. 기존 연구의 실제 공격 관측값과 본 연구의 KEV 등재값은 동일한 종속변수가 아니므로 수치나 결과를 직접 비교하지 않는다.</p>
+<h2 id="sec-11">III. 연구방법</h2>
+<h3 id="sec-12">3.1 데이터 출처와 관측 시점</h3>
+<p>NIST NVD의 2024년 CVE JSON 2.0 데이터와 CISA KEV JSON을 사용했다[2, 3]. 제공받은 NVD 파일 내부의 <code>timestamp</code>는 <code>2026-10-16T03:01:30.132781</code>이며, KEV의 <code>catalogVersion</code>은 <code>2026.10.16</code>, <code>dateReleased</code>는 <code>2026-10-16T17:15:48.8752Z</code>이다. 원본 두 파일을 연구 대화에서 <strong>확보·수령한 날짜</strong>는 <strong>2026년 10월 18일</strong>이다. 자료 제공자가 최초 원본을 실제로 다운로드한 시간은 확인할 수 없으므로 다운로드 시각을 임의 기재하지 않았다. 이번 분석은 <strong>2024년 당시의 상태가 아니라 2026년 10월 갱신 자료를 기준으로 한 사후 관찰</strong>이다.</p>
+<h3 id="sec-13">3.2 표본 선정 및 제외 기준</h3>
+<p>NVD 파일의 전체 레코드는 39,269건이다. 분석 대상은 (1) 식별자가 <code>CVE-2024-</code>로 시작하고, (2) NVD의 <code>published</code> 날짜가 2024년 1월 1일부터 12월 31일 사이이며, (3) <code>REJECTED</code> 상태가 아니고, (4) CVSS v3.1 Base Score가 존재하는 CVE이다. 2024년 이외 공개일 6,150건, 거절된 CVE 459건, v3.1 점수가 없는 558건을 단계적으로 제외하여 <strong>최종 32,102건</strong>을 분석하였다. 제외 사유는 순차적으로 적용했으며(39,269−6,150−459−558=32,102), 각 제외 수치는 상호 중복 없이 계산하였다. 개별 취약점을 임의 표집하지 않고, 고정 조건을 충족하는 파일 내 전체 레코드를 분석했으므로 반복 실험 횟수 대신 전체 표본 수를 제시한다.</p>
+<h3 id="sec-14">3.3 변수 정의와 점수 선택 기준</h3>
+<div class="table-scroll"><table><thead><tr><th scope="col">항목</th><th scope="col">고정한 측정·처리 방법</th></tr></thead><tbody><tr><td>설명변수</td><td>NVD CVSS v3.1 Base Score의 공식 심각도 분류(주 비교: Critical 대 Medium)</td></tr><tr><td>결과변수</td><td>동일 CVE ID가 CISA KEV 목록에 있으면 1, 없으면 0</td></tr><tr><td>기본 비교 지표</td><td>등재 비율 = 해당 구간 KEV 등재 건수 ÷ 해당 구간 CVE 건수 × 100</td></tr><tr><td>점수 선택 우선순위</td><td>NVD Primary → 타 기관 Primary → NVD Secondary → 타 기관 Secondary</td></tr><tr><td>고정 조건</td><td>2024년 공개일, CVE-2024 식별자, REJECTED 제외, CVSS v3.1, KEV 파일 고정 스냅샷</td></tr><tr><td>보조 결과</td><td>None·Low·High의 표본 및 등재 비율, Wilson 95% 구간(기술적 참고)</td></tr></tbody></table></div>
+<p>단일 CVE에 여러 CVSS v3.1 점수가 있으면 사전에 정한 우선순위에 따라 하나를 선택했다. NVD 자체의 점수가 없는 경우 다른 기관의 CVSS 3.1 점수를 선택할 수 있으므로 모든 표본을 ‘NVD가 직접 채점한 취약점’으로 해석하지 않는다.</p>
+<h3 id="sec-15">3.4 분석 및 재현 절차</h3>
+<p>Python 표준 라이브러리 기반 <code>analyze.py</code>로 NVD ZIP과 KEV JSON을 읽어 CVE ID를 연결하고, 위 선정 기준과 분류 기준에 따라 건수·비율을 계산했다. 동일 CVE ID 중복을 검사하고, 실행 전 원자료 SHA-256 해시를 매니페스트에 기록된 값과 대조한다. 개별 선택 결과는 <code>eligible_cve_rows.csv</code>, 그룹 결과는 <code>severity_summary.csv</code>, 실행 조건·제외 건수와 비교값은 <code>analysis_summary.json</code>으로 저장하였다. 저장 후 <code>test_analysis.py</code>로 소형 테스트 데이터에 대한 처리 로직을 검증했다. 데이터 분석 과정에서 사전 확정 가설의 방향을 수정하지 않았다.</p>
+<h2 id="sec-16">IV. 연구결과</h2>
+<h3 id="sec-17">4.1 분석 표본의 구성</h3>
+<p>KEV 원본 목록은 여러 공개 연도의 취약점을 포함한 1,748건이다. 이 전체 수를 곧바로 2024년 취약점 건수로 취급하지 않았다. NVD 39,269건에서 사전 제외 기준을 적용한 32,102건 중 KEV 등재 CVE는 149건이었다. 점수 0.0으로 분류되는 None 1건 역시 선택 기준에 부합하므로 누락하지 않았다.</p>
+<p><strong>Table 1. CVSS v3.1 severity groups and KEV listing rates</strong></p>
+<div class="table-scroll"><table><thead><tr><th scope="col">CVSS v3.1 구간</th><th scope="col">분석 CVE(n)</th><th scope="col">KEV 등재(k)</th><th scope="col">KEV 등재 비율(%)</th><th scope="col">Wilson 95% 구간(%)</th></tr></thead><tbody><tr><td>None</td><td>1</td><td>0</td><td>0.00000</td><td>0.00000–79.34507</td></tr><tr><td>Low</td><td>626</td><td>1</td><td>0.15974</td><td>0.02820–0.89924</td></tr><tr><td>Medium</td><td>15,993</td><td>13</td><td>0.08129</td><td>0.04751–0.13903</td></tr><tr><td>High</td><td>11,251</td><td>70</td><td>0.62217</td><td>0.49278–0.78526</td></tr><tr><td>Critical</td><td>4,231</td><td>65</td><td>1.53628</td><td>1.20721–1.95327</td></tr><tr><td><strong>합계</strong></td><td><strong>32,102</strong></td><td><strong>149</strong></td><td><strong>0.46415</strong></td><td>—</td></tr></tbody></table></div>
+<p><em>자료: 제출된 NVD 2024 JSON 및 CISA KEV JSON을 사전 고정된 스크립트로 집계. Wilson 구간은 독립 무작위 표본에 대한 일반화를 보장하지 않는 참고 수치이다.</em></p>
+<p>![Fig. 1. KEV listing rate by CVSS v3.1 severity group](figures/kev_rate_by_cvss.png)</p>
+<p><em>Fig. 1. KEV listing rate by CVSS v3.1 severity group.</em></p>
+<h3 id="sec-18">4.2 Critical과 Medium의 사전 가설 검증</h3>
+<p>Critical에서는 4,231건 중 65건이 KEV에 등재되어 <strong>1.53628%</strong>였고, Medium에서는 15,993건 중 13건이 등재되어 <strong>0.08129%</strong>였다. Critical의 비율은 Medium보다 <strong>1.45499%포인트 높았으며</strong>, 비율의 비는 <strong>약 18.89979배</strong>였다. 사전에 정한 H1의 ‘Critical &gt; Medium’ 방향에 부합하므로 <strong>이번 데이터에서 H1의 방향은 지지되었다</strong>고 판단한다. 이는 인과적 효과나 새로운 취약점에 대한 예측 정확도를 입증하지는 않는다.</p>
+<h3 id="sec-19">4.3 사전 가설 밖의 결과와 예외</h3>
+<p>모든 심각도 구간이 점수에 따라 완벽하게 증가하지는 않았다. <strong>Low의 KEV 등재 비율 0.15974%는 Medium의 0.08129%보다 높았다.</strong> 다만 Low는 KEV 등재 사례가 1건뿐이어서 이 비교의 불확실성이 크다. 또한 KEV 등재 <strong>절대 건수</strong>는 High(70건)가 Critical(65건)보다 많았지만 분모의 크기가 달라 <strong>등재 비율</strong>은 Critical 쪽이 높았다. 따라서 본 연구는 ‘모든 구간에서 점수가 증가할수록 등재 비율이 반드시 증가한다’는 주장을 하지 않는다.</p>
+<p>KEV에 등재된 연구 표본 149건 중 목록의 <code>dateAdded</code>가 2024년인 것은 116건(그룹별 Critical 50, High 56, Medium 10), 2025년인 것은 26건(Critical 12, High 10, Medium 3, Low 1), 2026년인 것은 7건(Critical 3, High 4)이었다. 이는 연구 결과가 2024년 당시 알려진 악용 정보에만 기반한 것이 아님을 보여 준다.</p>
+<h2 id="sec-20">V. 논의</h2>
+<h3 id="sec-21">5.1 결과 해석과 취약점 관리의 시사점</h3>
+<p>2024년 공개 CVE로 제한한 관찰에서 Critical 그룹의 KEV 등재 비율이 Medium보다 높게 나타났다. 이 결과는 기술적으로 더 높은 심각도로 평가된 취약점 그룹에 확인된 악용 사례가 상대적으로 더 자주 나타날 수 있음을 시사한다. 그러나 CVSS와 KEV는 측정 목적이 다르다. KEV는 목록에 등재된 경우에만 1을 기록하고, 미등재에는 실제 악용 여부를 확정할 근거가 없다. 따라서 이 결과만으로 ‘Critical이면 악용될 확률이 18.9배’라고 설명하거나 CVSS만으로 조치 우선순위를 결정해서는 안 된다.</p>
+<p>실무적으로는 CVSS 점수와 함께 KEV 등재 여부, 자산 노출도, 시스템 중요도, 패치 가능성 등을 함께 고려하는 접근이 합리적이라는 <strong>논의 방향</strong>을 제시할 수 있다. 다만 본 연구는 이러한 실무 지표를 직접 수집·검증한 것은 아니므로, 결론에서 해당 방식의 효과가 증명되었다고 단정하지 않는다. CVSS 단독 사용의 한계와 별도 악용 지표의 필요성은 선행연구[5, 7, 8]와 연결해 이해할 수 있다.</p>
+<h3 id="sec-22">5.2 다른 결과를 설명할 수 있는 가능성</h3>
+<p>Low의 등재 비율이 Medium보다 높게 나온 것은 Low 집단의 KEV 등재 사례가 단 1건으로 드문 사건이라는 점, 취약점이 실제로 악용되어도 KEV 목록에 추가되지 않을 수 있다는 점, 취약점 종류나 제품 분포가 구간마다 다를 수 있다는 점 등으로 설명될 가능성이 있다. 그러나 이번 자료로 이 원인들의 상대적 기여도를 검증하지 못했으므로 <strong>가능성</strong>으로만 기재한다. High의 절대 등재 건수가 Critical보다 많은 것은 두 구간의 전체 표본 수가 크게 다른 점(High 11,251건 대 Critical 4,231건)과 양립한다.</p>
+<h3 id="sec-23">5.3 연구 한계</h3>
+<p>첫째, KEV 미등재를 ‘악용되지 않음’으로 단정할 수 없고 CISA의 등재 정책·관측 범위에 따른 편향이 존재할 수 있다. 둘째, CVSS v3.1이 없는 558건을 제외하고, 평가자가 다른 3.1 점수를 하나로 선택했으므로 점수 누락·평가자 차이에 따른 선택 편향이 있다. 셋째, 분석은 2026년 10월 기준 사후 갱신 자료이므로 2024년 당시 공개 직후의 예측 연구가 아니다. 넷째, CVSS 심각도는 무작위로 할당되지 않았으며 제품 종류·취약점 특성 등 교란요인을 통제하지 않았으므로 인과관계를 확인할 수 없다. 다섯째, CVE의 실제 공격 횟수, 자산별 피해, 공격 성공률, 패치 소요 시간은 이번 두 원자료에 존재하지 않아 분석하지 않았다. Wilson 구간 역시 확률 표본의 추론을 그대로 정당화하지 않는다.</p>
+<h3 id="sec-24">5.4 설계 변경 및 결과 보존</h3>
+<p>데이터 관찰 전에는 질문 범위가 추상적이었으므로 공개 연도·CVSS 버전·KEV 등재 여부를 명시한 가설로 구체화했다. 데이터 분석 이후에는 사전 H1과 Primary 분석 기준을 변경하지 않았고, Low와 Medium의 비단조성, High의 더 많은 등재 건수 등 가설에 불리해 보일 수 있는 결과도 삭제하지 않았다. 가설이 틀렸다면 그 결과 역시 기록하도록 설계했다.</p>
+<h2 id="sec-25">VI. 결론</h2>
+<p>본 연구는 2024년 공개된 CVE 중 CVSS v3.1 점수가 확인되는 32,102건과 2026년 10월 기준 CISA KEV 목록을 CVE 번호로 결합하여 CVSS 심각도 구간별 KEV 등재 비율을 비교하였다. Critical 4,231건 중 65건(1.53628%), Medium 15,993건 중 13건(0.08129%)이 KEV에 등재되어, Critical의 등재 비율이 약 18.9배 높았다. 따라서 사전에 확정한 ‘Critical 그룹의 KEV 등재 비율이 Medium보다 높다’는 가설은 <strong>해당 데이터와 관측 시점에서 지지</strong>되었다. 한편 Low의 등재 비율이 Medium보다 높은 예외가 있었고, High는 Critical보다 더 많은 KEV 등재 건수를 보였다. 이는 등재 건수와 등재 비율을 구분해야 함을 보여 준다. 본 결과는 CVSS 심각도와 KEV 등재 간의 관찰적 차이에 한정되며, 악용의 인과관계·미래 공격 확률·개별 조직의 실제 피해 위험을 결론 내릴 수 없다. 후속 연구에서는 취약점 유형·제품·평가자와 공개 이후 관측기간을 통제하고, 다른 악용 관측 자료와 비교할 필요가 있다.</p>
+<h2 id="sec-26">참고문헌</h2>
+<p>[1] FIRST. (2019). <em>Common Vulnerability Scoring System v3.1: Specification document</em>. <a href="https://www.first.org/cvss/v3.1/specification-document" rel="noopener noreferrer" target="_blank">https://www.first.org/cvss/v3.1/specification-document</a></p>
+<p>[2] National Institute of Standards and Technology (NIST). (2026, 자료 스냅샷 기준). <em>National Vulnerability Database: CVE JSON 2.0 Data Feeds</em>. <a href="https://nvd.nist.gov/vuln/data-feeds" rel="noopener noreferrer" target="_blank">https://nvd.nist.gov/vuln/data-feeds</a></p>
+<p>[3] Cybersecurity and Infrastructure Security Agency (CISA). (2026, 자료 스냅샷 기준). <em>Known Exploited Vulnerabilities Catalog</em>. <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noopener noreferrer" target="_blank">https://www.cisa.gov/known-exploited-vulnerabilities-catalog</a></p>
+<p>[4] Bozorgi, M., Saul, L. K., Savage, S., &amp; Voelker, G. M. (2010). Beyond heuristics: Learning to classify vulnerabilities and predict exploits. <em>Proceedings of the 16th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 105–114. <a href="https://doi.org/10.1145/1835804.1835821" rel="noopener noreferrer" target="_blank">https://doi.org/10.1145/1835804.1835821</a></p>
+<p>[5] Allodi, L., &amp; Massacci, F. (2014). Comparing vulnerability severity and exploits using case-control studies. <em>ACM Transactions on Information and System Security, 17</em>(1), Article 1, 1–20. <a href="https://doi.org/10.1145/2630069" rel="noopener noreferrer" target="_blank">https://doi.org/10.1145/2630069</a></p>
+<p>[6] Allodi, L. (2017). Economic factors of vulnerability trade and exploitation. <em>Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security</em>, 1483–1499. <a href="https://doi.org/10.1145/3133956.3133960" rel="noopener noreferrer" target="_blank">https://doi.org/10.1145/3133956.3133960</a></p>
+<p>[7] Jacobs, J., Romanosky, S., Adjerid, I., &amp; Baker, W. (2020). Improving vulnerability remediation through better exploit prediction. <em>Journal of Cybersecurity, 6</em>(1), tyaa015. <a href="https://doi.org/10.1093/cybsec/tyaa015" rel="noopener noreferrer" target="_blank">https://doi.org/10.1093/cybsec/tyaa015</a></p>
+<p>[8] Jacobs, J., Romanosky, S., Edwards, B., Adjerid, I., &amp; Roytman, M. (2021). Exploit prediction scoring system (EPSS). <em>Digital Threats: Research and Practice, 2</em>(3), Article 20. <a href="https://doi.org/10.1145/3436242" rel="noopener noreferrer" target="_blank">https://doi.org/10.1145/3436242</a></p>
+<h2 id="sec-27">부록 A. 논거 및 문헌 검증 기록</h2>
+<ul><li>[1]은 CVSS v3.1 점수와 공식 등급을 정의하여 설명변수의 측정 근거를 제공한다.</li><li>[2]는 CVE·CVSS 정보의 원천 데이터와 공개 연도의 추출 근거를 제공한다.</li><li>[3]은 악용이 확인된 CVE 목록과 등재일의 출처를 제공한다.</li><li>[4]는 공개된 취약점의 여러 속성으로 악용 관련 결과를 연구한 실증 근거다.</li><li>[5]는 CVSS와 악용의 차이 및 취약점 조치 우선순위의 한계를 다룬다.</li><li>[6]은 기술적 심각도 외의 경제적·시장적 요인도 고려할 수 있는 배경을 제공한다.</li><li>[7]은 실제 관측된 악용 데이터를 바탕으로 조치 우선순위를 비교한 연구다.</li><li>[8]은 CVSS와 다른 개념인 악용 예측 지표의 필요성을 설명한다.</li></ul>
+<p>검색과 검증에는 저자·연도·발표처를 논문 DOI, 학술지·기관 기록, 제공 가능한 초록 및 공개 본문에서 대조하는 방식을 사용했다. 다섯 편의 전체 원문을 모두 정독했다고 주장하지 않는다. EPSS의 2020년 SSRN 사전 공개본은 [8]의 2021년 정식 학술지 게재본과 중복되는 계열이어서 독립된 추가 논문으로 세지 않았다.</p>
+<h2 id="sec-28">부록 B. 재현 방법과 원자료 무결성</h2>
+<ol><li><code>data_raw/cisa_kev.json</code>은 제공받은 CISA KEV JSON <strong>원본 그대로</strong>이다. <code>data_raw/nvd_2024.zip</code>은 제공받은 NVD JSON 원본 39,269건에서 <strong>이번 분석에 사용하는 CVE 번호·공개일·상태·CVSS v3.1 필드만 추출한 연구용 축약본</strong>이다. 분석에 쓰지 않는 설명·CPE 등 다른 필드는 들어 있지 않으므로 <strong>NVD 전체 원본과 동일한 파일은 아니다</strong>. 업로드 제한(8MB)을 지키기 위한 조치이며, 원본 파일 자체는 제출 ZIP 밖에 보관한다.</li><li>Python 3.10 이상에서 패키지 최상위 폴더에서 <code>python test_analysis.py</code>와 <code>python analyze.py</code>를 실행한다. 외부 패키지 설치는 필요 없다.</li><li><code>output/severity_summary.csv</code>의 Medium 15,993/13 및 Critical 4,231/65를 확인하고, <code>output/analysis_summary.json</code>의 <code>eligible_sample_n = 32102</code>, <code>primary_hypothesis_direction = H1_DIRECTION_SUPPORTED</code>를 확인한다.</li><li>SHA-256 무결성 확인: NVD 연구용 축약 ZIP <code>eb3765be895cd338b4338ce8e1cc06096c97129361ab5f0c0a1b552eb81b6858</code>, CISA KEV 원본 JSON <code>b6e27975f6635ecfc546fbd4fd6e444ba63a07ab2abc8876229d77fe083d357d</code>. NVD 전체 원본 JSON(제출 ZIP 미포함)의 SHA-256은 <code>d05227bee048355dc011ec031beb12fbe6589e080182099ef156291ca54121ff</code>이다. 출처·파일 크기·스냅샷 시점은 <code>data_raw/download_manifest.json</code>에 적혀 있다.</li></ol>
+<p><strong>자료 확보 날짜:</strong> 분석자가 파일을 대화로 전달받은 날짜는 2026-10-18이며, NVD·KEV 자료 내부의 기준 시점은 모두 2026-10-16이다. 제공자가 출처 사이트에서 원본을 실제로 다운로드한 날짜·시간은 확인되지 않아 별도로 표시했다. NVD 전체 원본을 다시 확보했다면 <code>extract_nvd.py</code>로 동일한 연구용 축약본을 만들 수 있으며, 입력 원본 및 추출 결과의 해시가 다르면 실행이 중단된다. ZIP에 포함된 축약본과 KEV 원본만으로 <code>analyze.py</code>를 실행하면 결과를 재현할 수 있다.</p></article>
+<footer class="docfoot">이 문서는 제공된 원본 Markdown을 읽기 편하도록 재배치한 공개 열람용 페이지입니다. <a href="./research/T10_연구논문.md">원본 확인</a> · <a href="./index.html">포트폴리오 돌아가기</a></footer>
+</main></div></body></html>
