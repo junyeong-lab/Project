@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="박준영의 정보보안 포트폴리오. 조직과 함께 문제를 해결하는 과정, 실제 기록, 보안 연구 및 프로젝트를 소개합니다.">
+<title>박준영 | 함께 문제를 해결하는 사람</title>
+<style>
+:root{color-scheme:light;--navy:#14223a;--text:#26344b;--muted:#64748b;--line:#e0e7ef;--blue:#2563eb;--paper:#fff;--bg:#f6f8fb}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{margin:0;color:var(--text);background:var(--bg);font-family:system-ui,-apple-system,"Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+a{color:var(--blue)}a:focus-visible{outline:3px solid var(--blue);outline-offset:5px;border-radius:3px}
+.container{width:min(1060px,calc(100% - 40px));margin:auto}
+.skip{position:absolute;left:16px;top:-50px;background:#fff;padding:8px;z-index:10}
+.skip:focus{top:10px}
+header{background:#fff;border-bottom:1px solid var(--line)}
+.head{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-size:17px;font-weight:800;letter-spacing:-.03em;color:var(--navy);text-decoration:none}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{font-size:13px;text-decoration:none;color:#46556b;font-weight:650}
+.hero{background:linear-gradient(135deg,#f0f5ff 0%,#fff 64%,#edf7f5 100%);border-bottom:1px solid var(--line)}
+.hero .container{padding:90px 0 78px}
+.eyebrow{letter-spacing:.16em;text-transform:uppercase;color:#446794;font-size:12px;font-weight:800}
+h1{color:var(--navy);font-size:clamp(38px,6vw,62px);letter-spacing:-.06em;line-height:1.2;margin:16px 0}
+.hero-line{font-size:clamp(20px,3vw,29px);font-weight:700;color:#273c60;line-height:1.55;max-width:780px;margin:8px 0 24px}
+.intro{color:var(--muted);margin:0 0 27px;font-size:15px}
+.link-primary{display:inline-block;border-radius:8px;background:var(--navy);color:#fff;text-decoration:none;padding:11px 18px;font-size:14px;font-weight:700}
+section.content{padding:65px 0 0}
+.section-eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#5276a0;font-weight:800}
+h2{font-size:clamp(24px,3.5vw,34px);line-height:1.35;color:var(--navy);letter-spacing:-.035em;margin:8px 0 20px}
+.section-desc{color:var(--muted);font-size:14px;margin:0 0 26px}
+.story{padding:30px 36px;background:var(--paper);border:1px solid var(--line);border-radius:18px}
+.story p{font-size:16px;line-height:1.92;margin:0 0 22px}
+.story p:last-child{margin:0}
+.story-first{font-weight:700;color:var(--navy)}
+.story-last{font-weight:800;color:#1e4e95}
+.skill-grid,.stat-grid,.work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.skill,.stat,.work{padding:23px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.skill h3,.work h3{font-size:19px;line-height:1.4;color:var(--navy);margin:0 0 8px}
+.skill p,.work p{color:#596a82;font-size:14px;line-height:1.75;margin:0}
+.skill .source{font-size:12px;color:var(--muted);margin-top:10px}
+.stat-number{font-size:35px;line-height:1.2;font-weight:850;letter-spacing:-.05em;color:var(--navy)}
+.stat-label{font-size:15px;font-weight:750;margin-top:8px}
+.stat-source{font-size:12px;color:var(--muted);margin-top:7px}
+.scope-note{font-size:13px;color:var(--muted);margin-top:16px}
+.work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tag{display:inline-block;color:#2d5d96;font-size:11px;font-weight:750;letter-spacing:.025em;background:#edf4ff;border-radius:5px;padding:3px 8px;margin-bottom:12px}
+.work .meta{font-size:13px;margin-top:14px;color:#536b8d}
+.work .notice{font-size:13px;font-weight:700;color:#606f82;margin-top:14px}
+.contact{margin:55px 0 75px;padding:32px;border:1px solid #cfdcf1;border-radius:16px;background:#f0f6ff}
+.contact h2{margin-top:0}
+.contact p{margin:0 0 12px;font-size:14px}
+.contact a{font-size:18px;font-weight:700;overflow-wrap:anywhere}
+footer{border-top:1px solid var(--line);padding:25px 0 45px;color:var(--muted);font-size:12px}
+@media(max-width:740px){.container{width:min(100% - 28px,1060px)}.head{align-items:start;padding:14px 0;flex-direction:column;gap:8px}nav{gap:12px}.hero .container{padding:58px 0}.story{padding:23px 20px}.story p{font-size:15px}.skill-grid,.stat-grid,.work-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header><div class="container head"><a class="brand" href="#home">박준영 · PORTFOLIO</a>
+<nav aria-label="주요 메뉴"><a href="#story">나의 이야기</a><a href="#strengths">세 가지 능력</a><a href="#evidence">기록의 숫자</a><a href="#projects">대표작</a><a href="#documents">지원 문서</a><a href="#contact">연락</a></nav></div></header>
+<main id="main">
+<section class="hero" id="home"><div class="container">
+<div class="eyebrow">Security · Collaboration · Growth</div>
+<h1>박준영</h1>
+<p class="hero-line">맡은 일을 넘어 동료와 함께 문제를 해결하는 사람</p>
+<p class="intro">정보보안 점검·컨설팅을 향해 배우고, 확인한 근거로 이야기합니다.</p>
+<a class="link-primary" href="#story">3분 안에 나의 이야기 읽기 →</a>
+</div></section>
+<section class="content container" id="story" aria-labelledby="story-title">
+<div class="section-eyebrow">My story</div>
+<h2 id="story-title">내 일의 끝에서, 함께하는 일의 시작으로</h2>
+<p class="section-desc">T09에서 확인한 실제 경험과 T11 소설의 사실 기반 장면을 다시 정리했습니다. 소설 속 창작 대화·가상 인물은 포함하지 않았습니다.</p>
+<article class="story">
+<p class="story-first">2023년, 저는 이전과는 전혀 다른 업무 환경에 적응해야 했습니다. 첫 근무지와 달리 작전부대로 전입한 뒤에는 해야 할 일이 크게 늘어났고, 하나를 끝내면 또 다른 일이 기다리고 있었습니다. 처음에는 업무량이 부담스럽고 힘들다는 생각이 앞섰습니다.</p>
+<p>군 복무를 시작할 때 저는 정해진 3년을 마친 뒤 전역해 다른 일을 찾아볼 생각이었습니다. 하지만 그 시간이 그저 힘들었던 기억으로만 남는 것은 원하지 않았습니다. 언젠가 돌아봤을 때 후회하지 않도록 군 생활을 대하는 태도부터 바꾸기로 했습니다.</p>
+<p>제가 맡은 일에 최선을 다하는 것은 물론 조직에도 보탬이 되는 사람이 되고자 했습니다. 제 업무를 끝냈다고 손을 놓기보다 같은 과 동료들의 업무에도 힘을 보태며 함께 일을 해나갔습니다. 적극적으로 참여할수록 일의 재미와 보람을 느꼈고, 그 과정에서 “조직을 위해 희생할 줄 안다”는 평가도 받았습니다.</p>
+<p>그 경험은 제게 세 가지 변화를 남겼습니다. 힘든 상황에서도 할 수 있는 일을 찾아 마음을 다잡는 자기조절력, 동료의 어려움을 함께 살피는 대인관계력, 주어진 시간을 후회 없이 보내려 스스로 행동하는 자기동기력입니다. 어려움이 사라진 것은 아니었습니다. 어려움을 대하는 저의 태도가 달라졌습니다.</p>
+<p>2026년 5월 31일 전역한 뒤에는 정보보안이라는 새로운 분야를 배워 나가기 시작했습니다. 처음 접하는 기술과 오류 앞에서 막힐 때도 많았습니다. 그렇지만 모르는 것을 인정하고, 어디에서 막혔는지 하나씩 확인하며 해결 방법을 찾아갔습니다.</p>
+<p>2026년 8월 31일에는 비가 많이 내려 교통이 불편했지만 스스로 정한 시간 약속을 지키기 위해 뛰어왔습니다. 동료는 지각이 아닌 상황에서도 자신의 원칙을 지키려는 모습이 본이 되었다고 기록했습니다. 작은 약속을 지키는 행동도 제게는 계속 배우고 싶은 자기조절의 모습입니다.</p>
+<p>9월 18일 팀 프로젝트에서는 어려움을 겪는 동료에게 아이디어와 해결 방안을 제시했습니다. 동료는 문제를 풀 실마리를 찾는 데 도움이 됐다며 고마움을 전했습니다. 10월 8일에는 제가 이전에 막혔던 실습 부분을 떠올리며 비슷한 문제를 겪는 동료와 함께 원인을 살펴봤습니다. 군에서 과원들의 일에 힘을 보탰던 태도가 새로운 환경에서도 이어진 순간이었습니다.</p>
+<p>10월 13일에는 실습이 뜻대로 진행되지 않았지만, 안 된다고만 생각하는 대신 원인을 하나씩 차분하게 확인했습니다. 늘 성공했던 것은 아닙니다. 어떤 날은 계획한 행동을 실천하지 못했다고 적었고, 다음 날 다시 시도했습니다. 저는 그 기록을 지우지 않기로 했습니다.</p>
+<p>2026년 10월 20일 기준 공식 출석 기록에는 확정 출석 45일과 출석률 97.8%가 남아 있습니다. 그 숫자가 모든 것을 말해 주지는 않지만, 어려움 속에서도 하루하루 이어 가려 한 시간을 보여 줍니다. 지금도 배우고 싶은 것은 혼자 모든 문제를 푸는 기술만이 아닙니다. 동료에게 필요한 질문을 건네고, 함께 해결책을 찾아 조직에 보탬이 되는 태도입니다.</p>
+<p class="story-last">저는 혼자 가는 사람보다 함께 문제를 해결하며 끝까지 성장하는 사람이 되고 싶습니다.</p>
+</article>
+</section>
+<section class="content container" id="strengths" aria-labelledby="skills-title">
+<div class="section-eyebrow">Three abilities</div><h2 id="skills-title">장면으로 확인하는 세 가지 능력</h2>
+<div class="skill-grid">
+<article class="skill"><h3>자기조절력</h3><p>어려움에 휩쓸리기보다 할 수 있는 일을 확인하는 태도. 2026년 10월 13일 오류를 차분히 점검한 기록.</p><p class="source">출처: 2026-10-13 마무리 리추얼</p></article>
+<article class="skill"><h3>대인관계력</h3><p>상대의 어려움을 듣고 함께 해결하는 태도. 2026년 9월 18일 팀 프로젝트에서 동료에게 해결 방안을 제안한 기록.</p><p class="source">출처: 2026-09-18 마무리 리추얼·익명 동료 평가</p></article>
+<article class="skill"><h3>자기동기력</h3><p>힘든 상황에서도 스스로 행동의 이유를 찾는 태도. 2023년 군 생활을 대하는 생각을 바꾸고 동료의 일에 힘을 보탠 경험.</p><p class="source">출처: T09 본인 확정 서사</p></article>
+</div>
+</section>
+<section class="content container" id="evidence" aria-labelledby="evidence-title">
+<div class="section-eyebrow">Evidence</div><h2 id="evidence-title">숫자로 남긴 과정</h2>
+<p class="section-desc">모든 수치는 2026년 10월 20일 확인 시점 기준입니다. 교육 과정 전체 13주가 끝난 뒤의 최종 성적을 뜻하지 않습니다.</p>
+<div class="stat-grid">
+<div class="stat"><div class="stat-number" id="bra-attendance-rate">97.8%</div><div class="stat-label">확정 출석률</div><div class="stat-source">확정 출석 45일 / 훈련일 46일 · 출처: 내 출석 기록</div></div>
+<div class="stat"><div class="stat-number" id="bra-ritual-stats">45 / 44</div><div class="stat-label">아침 / 마무리 기록</div><div class="stat-source">2026.08.11~10.19 · 출처: 리추얼 기록</div></div>
+<div class="stat"><div class="stat-number" id="bra-submission-count">14건</div><div class="stat-label">과제 제출 이력</div><div class="stat-source">재제출 포함 제출 건수 · 출처: 내 제출 현황</div></div>
+</div><p class="scope-note">2026년 10월 19일 몸 상태가 좋지 않았던 날에도 리추얼 기록을 남기고 공식 출석을 이어갔습니다. 출석 기록과 당일 리추얼을 연결한 사례입니다.</p>
+</section>
+<section class="content container" id="projects" aria-labelledby="projects-title">
+<div class="section-eyebrow">Selected work</div><h2 id="projects-title">대표작</h2>
+<div class="work-grid">
+<article class="work"><span class="tag">T10 · 연구논문</span><h3>CVSS v3.1 심각도와 CISA KEV 등재 비율의 연관성 분석</h3><p>2024년 공개 취약점 데이터를 비교해 심각도에 따른 KEV 등재 비율을 확인했습니다. 32,102건의 분석 표본에서 Critical과 Medium의 등재 비율을 비교했습니다.</p><p class="meta">데이터 분석 결과: Critical 1.536%, Medium 0.081% · 관찰된 연관성으로만 해석</p><p class="meta"><a href="./research/T10_연구논문.md" target="_blank" rel="noopener noreferrer">논문 원문 열기·저장 →</a></p></article>
+<article class="work"><span class="tag">T13 · 앱 예정</span><h3>다음 대표작을 준비하고 있습니다</h3><p>13번 과제를 마친 뒤 실제 앱의 설명과 접근 가능한 주소를 이 위치에 추가할 예정입니다.</p><p class="notice">앱 결과물 미등록 · 계획 날짜 확인 후 표기 예정</p></article>
+</div>
+</section>
+<section class="content container" id="documents" aria-labelledby="documents-title">
+<div class="section-eyebrow">Career documents</div><h2 id="documents-title">취업 지원 문서</h2>
+<p class="section-desc">현재 확인된 경험을 바탕으로 작성한 문서입니다. 공고별 지원 전 최종 검토가 필요합니다.</p>
+<div class="skill-grid">
+<article class="skill"><h3>이력서</h3><p>관련 경력·자격·학습 성과를 한눈에 확인할 수 있습니다.</p><p class="meta"><a href="./documents/BR-A_이력서_박준영.md" target="_blank" rel="noopener noreferrer">이력서 보기 →</a></p></article>
+<article class="skill"><h3>자기소개서</h3><p>2023년의 어려움에서 태도 변화와 협업, 현재의 성장으로 이어지는 이야기입니다.</p><p class="meta"><a href="./documents/BR-A_자기소개서_박준영.md" target="_blank" rel="noopener noreferrer">자기소개서 보기 →</a></p></article>
+<article class="skill"><h3>경력기술서</h3><p>각 경험을 세 가지 능력 및 상황·행동·결과와 연결했습니다.</p><p class="meta"><a href="./documents/BR-A_경력기술서_박준영.md" target="_blank" rel="noopener noreferrer">경력기술서 보기 →</a></p></article>
+</div>
+<div id="bra-approved-section" hidden><h3>직접 승인한 새로운 기록</h3><div id="bra-approved-paragraphs"></div></div>
+</section>
+<section class="container contact" id="contact" aria-labelledby="contact-title">
+<h2 id="contact-title">함께 해결할 문제를 이야기하고 싶습니다</h2>
+<p>정보보안 점검·컨설팅 및 협업과 관련해 연락하실 수 있습니다.</p>
+<a href="mailto:eungdab15@gmail.com">eungdab15@gmail.com</a>
+<p class="scope-note">이력서 · 자기소개서 · 경력기술서 공개용 문서는 사실관계 확인 후 연결 예정입니다.</p>
+</section>
+</main>
+<footer><div class="container">© 2026 박준영 · 공개 범위: 본인 경력·학습 결과·익명화된 근거만 사용</div></footer>
+<script src="./site-data.js"></script>
+<script>
+(function(){
+  const data=window.BRA_DATA;
+  if(!data || !data.metrics)return;
+  const m=data.metrics;
+  const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+  set('bra-attendance-rate',m.attendance_rate_percent.toFixed(1)+'%');
+  set('bra-ritual-stats',m.ritual_morning_entries+' / '+m.ritual_evening_entries);
+  set('bra-submission-count',m.submission_entries_including_resubmissions+'건');
+  if(Array.isArray(data.approved_paragraphs) && data.approved_paragraphs.length){
+    const section=document.getElementById('bra-approved-section');
+    const holder=document.getElementById('bra-approved-paragraphs');
+    if(section && holder){
+      for(const item of data.approved_paragraphs){
+        const p=document.createElement('p');
+        p.textContent=(item.date||'')+' — '+(item.candidate||'')+' (출처: '+(item.source||'')+')';
+        holder.appendChild(p);
+      }
+      section.hidden=false;
+    }
+  }
+})();
+</script>
+</body></html>
