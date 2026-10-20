@@ -73,7 +73,7 @@
 ## 자격·어학
 
 - 정보처리기사 · SQLD · 네트워크관리사 2급
-- **TOEIC Speaking IM2** (시험 일자·점수 미기재)
+- **TOEIC Speaking IM2**
 
 ## 표창
 
