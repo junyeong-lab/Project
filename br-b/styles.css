@@ -40,3 +40,25 @@
 .selected-cve .selected-description{color:#a9c1c7}
 .selected-cve a{color:#92e8d3;text-decoration:underline;text-underline-offset:3px;font-size:12px}
 @media(max-width:700px){.lookup-panel{padding:22px 18px}.lookup-heading{flex-wrap:wrap;gap:10px}.lookup-live{display:none}.lookup-heading h3{font-size:22px}.lookup-input-row{flex-direction:column}.lookup-input-row button{width:100%}.lookup-results{grid-template-columns:1fr}.manual-heading{margin-top:35px}}
+
+
+/* Distinguish a queried CVE (current public information) from T10's fixed 2024 cohort. */
+.source-panel{border-radius:12px;padding:17px 17px 18px;margin-bottom:15px;border:1px solid #2c5364}
+.current-source-panel{background:linear-gradient(130deg,#122e3c,#102434);border-color:#376477}
+.paper-source-panel{background:linear-gradient(130deg,#2b2439,#201f33);border-color:#635477}
+.source-panel-heading{display:flex;align-items:center;gap:9px;margin-bottom:9px;flex-wrap:wrap}
+.source-panel-heading h3{font-size:14px;letter-spacing:-.02em;line-height:1.45;margin:0}
+.source-panel-index{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:7px;background:#67d7c8;color:#0d2730;font-size:11px;font-weight:800}
+.paper-source-panel .source-panel-index{background:#c4a1ea;color:#261b37}
+.data-flag{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.025em;border:1px solid #4d8291;border-radius:30px;padding:4px 8px;color:#b1ede2;white-space:nowrap}
+.paper-flag{border-color:#78638f;color:#e0c1fb}
+.source-panel-sub{font-size:11px;color:#a6c5d2;margin:0 0 13px;line-height:1.65}
+.paper-source-panel .source-panel-sub{color:#cfc4dc}
+.source-panel-main{font-size:20px;font-weight:800;letter-spacing:-.035em;margin:0 0 6px;color:#daf6ee;overflow-wrap:anywhere}
+.source-panel-detail{font-size:12px;line-height:1.75;color:#bfd6dd;margin:2px 0}
+.paper-source-panel .result-overline{font-size:11px;color:#dfcbe9}
+.paper-source-panel .result-grade{margin-top:3px}
+.paper-source-panel .result-percentage{margin-top:14px;margin-bottom:13px;background:#151a2b;border-color:#635377}
+.paper-explain{margin:0;font-size:11px;line-height:1.8;color:#d0c1dc;border-top:1px solid #554765;padding-top:12px}
+.paper-explain b{color:#f5e4ff}
+@media(max-width:650px){.source-panel{padding:15px 13px}.data-flag{margin-left:0}.source-panel-main{font-size:18px}}
