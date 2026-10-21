@@ -55,7 +55,7 @@
     const scopeMessage=$('result-scope-message');
     const banner=$('result-scope-banner');
     const publishedForBanner=selectedCve && typeof selectedCve.published==='string'?selectedCve.published:'';
-    const yearForBanner=/^(\\d{4})-/.exec(publishedForBanner);
+    const yearForBanner=/^(\d{4})-/.exec(publishedForBanner);
     const cvYear=yearForBanner?Number(yearForBanner[1]):null;
     if(scopeHeading && scopeMessage && banner) {
       if(selectedCve && cvYear && cvYear!==2024) {
