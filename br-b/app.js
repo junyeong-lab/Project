@@ -56,9 +56,9 @@
       const yearMatch=/^(\d{4})-/.exec(published);
       const year=yearMatch?Number(yearMatch[1]):null;
       if(selectedCve && year && year!==2024) {
-        scopeNote.textContent='선택한 '+selectedCve.id+'은(는) '+year+'년에 공개됐습니다. 아래 등재 비율은 별도로 분석한 2024년 공개 CVE 집단의 통계이므로 이 취약점의 악용 확률로 해석할 수 없습니다.';
+        scopeNote.textContent='선택한 취약점 '+selectedCve.id+'의 공개 연도는 '+year+'년입니다. 아래 등재 비율은 별도로 분석한 2024년 공개 CVE 집단의 통계이므로 이 취약점의 악용 확률로 해석할 수 없습니다.';
       } else if(selectedCve && year===2024) {
-        scopeNote.textContent='선택한 '+selectedCve.id+'은(는) 2024년에 공개됐지만 논문의 분석 기준과 고정 관측 시점에 포함됐는지는 별도 확인이 필요합니다. 이 집단의 등재 비율은 해당 CVE의 악용 확률이 아닙니다.';
+        scopeNote.textContent='선택한 취약점 '+selectedCve.id+'의 공개 연도는 2024년이지만, 논문 표본에 포함됐는지는 선정 기준에 따라 별도 확인해야 합니다. 집단 등재 비율은 해당 CVE의 악용 확률이 아닙니다.';
       } else if(selectedCve) {
         scopeNote.textContent='선택한 CVE의 공개 연도를 확인하지 못했습니다. 아래 수치는 2024년 공개 취약점을 분석한 고정 집단 통계이며 개별 CVE의 악용 확률이 아닙니다.';
       } else {
