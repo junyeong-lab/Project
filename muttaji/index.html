@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFF6D9">
+  <meta name="description" content="뭐따지? — AI가 알려주는 나만의 취업 준비 가이드. SKT ALEPH 웹앱 MVP 개발 진행 중.">
+  <title>뭐따지? | AI 취업 준비 가이드</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif;color:#1b2940;background:#fff9eb}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh}
+    .shell{width:min(880px,calc(100% - 36px));margin:0 auto;padding:48px 0 64px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{font-weight:900;font-size:1.45rem;letter-spacing:-.06em}.tag{font-size:.83rem;color:#4a5060;background:white;border:1px solid #e9dcc2;border-radius:99px;padding:8px 13px}
+    main{margin-top:70px}.eyebrow{color:#7f5b00;font-weight:700;font-size:.95rem;margin:0 0 15px}
+    h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.22;letter-spacing:-.055em;margin:0 0 18px}
+    h1 em{font-style:normal;color:#cc7a00}.lead{font-size:1.12rem;line-height:1.85;max-width:700px;color:#4e5866;margin:0}
+    .notice{margin:34px 0;background:#fff;border:1px solid #e8dfcd;border-left:6px solid #ffc940;border-radius:18px;padding:23px 25px;box-shadow:0 10px 28px rgba(63,51,20,.04)}
+    .notice strong{display:block;margin-bottom:10px;font-size:1.08rem}.notice p{margin:0;line-height:1.7;color:#516070}
+    h2{font-size:1.2rem;letter-spacing:-.035em;margin:36px 0 16px}
+    .flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .step{background:white;border:1px solid #eee3cf;border-radius:16px;padding:19px;min-height:125px}
+    .num{display:inline-block;background:#ffdb69;color:#47330b;border-radius:8px;font-size:.78rem;padding:5px 9px;font-weight:800}
+    .step b{display:block;margin:12px 0 5px}.step span{font-size:.87rem;color:#697381;line-height:1.6}
+    footer{margin-top:50px;font-size:.85rem;color:#697381;border-top:1px solid #e7dcc6;padding-top:18px}
+    a{color:#1d4f83;text-underline-offset:4px}
+    @media(max-width:650px){.shell{padding-top:28px}main{margin-top:52px}.flow{grid-template-columns:1fr}.step{min-height:0}.tag{font-size:.72rem}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><div class="brand" aria-label="뭐따지?">뭐따지?</div><span class="tag">SKT ALEPH · MVP 개발 중</span></header>
+    <main>
+      <p class="eyebrow">AI가 알려주는 나만의 취업 준비 가이드</p>
+      <h1>채용공고를 읽고,<br><em>다음 준비를 정하다.</em></h1>
+      <p class="lead">「뭐따지?」는 채용공고의 요구조건을 나의 역량과 비교해, 부족한 부분을 채울 학습·프로젝트·자격증과 취업 준비 순서를 안내하는 서비스를 목표로 합니다.</p>
+      <section class="notice" aria-label="현재 서비스 상태">
+        <strong>현재는 프로젝트 초기 배포 화면입니다.</strong>
+        <p>기획과 `plan.md` 작성은 완료했습니다. 채용공고 AI 분석·자격증 검색·역량 비교·로드맵 기능은 아직 구현되지 않았으며, 앞으로 단계별로 연결합니다. 실제 작동하지 않는 기능을 시연용 결과처럼 표시하지 않습니다.</p>
+      </section>
+      <section aria-labelledby="roadmap"><h2 id="roadmap">우리가 만들 핵심 흐름</h2>
+        <div class="flow">
+          <article class="step"><span class="num">01 · 예정</span><b>채용공고 분석</b><span>텍스트·이미지에서 필수조건과 우대사항을 구분합니다.</span></article>
+          <article class="step"><span class="num">02 · 예정</span><b>역량 비교</b><span>내 학력·경험·자격증과 공고 요구사항을 근거로 비교합니다.</span></article>
+          <article class="step"><span class="num">03 · 예정</span><b>준비 로드맵</b><span>관련 자격증과 학습·프로젝트 준비 순서를 제안합니다.</span></article>
+        </div>
+      </section>
+    </main>
+    <footer>기존 병아리 캐릭터 및 디자인 시안은 원본 자산 확인 후 반영 예정 · <a href="https://github.com/junyeong-lab/Project/tree/main/muttaji" target="_blank" rel="noopener noreferrer">프로젝트 개발 기록 보기</a></footer>
+  </div>
+</body>
+</html>
