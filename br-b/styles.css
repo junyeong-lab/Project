@@ -62,3 +62,14 @@
 .paper-explain{margin:0;font-size:11px;line-height:1.8;color:#d0c1dc;border-top:1px solid #554765;padding-top:12px}
 .paper-explain b{color:#f5e4ff}
 @media(max-width:650px){.source-panel{padding:15px 13px}.data-flag{margin-left:0}.source-panel-main{font-size:18px}}
+
+
+/* BR-B: source/period comparison notice, distinct from the research sample panel */
+.result-scope-banner{border:1px solid #557987;border-left:4px solid #67d3c6;background:#0c2935;border-radius:12px;margin:2px 0 16px;padding:13px 16px;color:#e3f3f4}
+.result-scope-banner strong{font-size:13px;line-height:1.5;display:block;color:#a6f0df}
+.result-scope-banner p{font-size:12px;line-height:1.7;margin:5px 0 0;color:#b8d5db}
+.result-scope-banner[data-scope="different-year"]{background:#312719;border-color:#ba8550;border-left-color:#e5af6a}
+.result-scope-banner[data-scope="different-year"] strong{color:#f5d19c}
+.result-scope-banner[data-scope="different-year"] p{color:#ead6b7}
+.result-scope-banner[data-scope="manual"]{background:#142735;border-color:#486983;border-left-color:#8bb6da}
+@media(max-width:650px){.result-scope-banner{padding:12px 14px}}
