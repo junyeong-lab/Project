@@ -38,7 +38,7 @@
     const kevLabel=result.kev==='yes'?'KEV 등재 확인':result.kev==='no'?'KEV 목록 미등재':'KEV 상태 확인 전';
     if(selectedCve) {
       $('current-data-title').textContent='현재 조회된 취약점 정보';
-      $('current-data-origin').textContent='NVD 취약점 조회 · CISA KEV 공개 목록 확인 결과';
+      $('current-data-origin').textContent=selectedCve.kevStatus==='unknown'?'NVD 취약점 조회 · CISA KEV 조회는 확인되지 않았습니다.':'NVD 취약점 조회 · CISA KEV 관련 공개 정보';
       $('current-cve-title').textContent=selectedCve.id;
       $('current-cve-detail').textContent='CVSS v3.1 '+result.score.toFixed(1)+'점 ('+result.group.name+') · '+kevLabel;
       $('current-cve-date').textContent=(selectedCve.published?'공개일: '+String(selectedCve.published).slice(0,10)+' · ':'')+
@@ -49,6 +49,21 @@
       $('current-cve-title').textContent='CVE 조회 정보 없음';
       $('current-cve-detail').textContent='CVSS v3.1 '+result.score.toFixed(1)+'점 ('+result.group.name+') · '+kevLabel;
       $('current-cve-date').textContent='실제 대상 CVE의 점수와 KEV 상태를 확인해 주세요.';
+    }
+    const scopeNote=$('paper-scope-explain');
+    if(scopeNote){
+      const published=selectedCve && typeof selectedCve.published==='string' ? selectedCve.published : '';
+      const yearMatch=/^(\d{4})-/.exec(published);
+      const year=yearMatch?Number(yearMatch[1]):null;
+      if(selectedCve && year && year!==2024) {
+        scopeNote.textContent='선택한 '+selectedCve.id+'은(는) '+year+'년에 공개됐습니다. 아래 등재 비율은 별도로 분석한 2024년 공개 CVE 집단의 통계이므로 이 취약점의 악용 확률로 해석할 수 없습니다.';
+      } else if(selectedCve && year===2024) {
+        scopeNote.textContent='선택한 '+selectedCve.id+'은(는) 2024년에 공개됐지만 논문의 분석 기준과 고정 관측 시점에 포함됐는지는 별도 확인이 필요합니다. 이 집단의 등재 비율은 해당 CVE의 악용 확률이 아닙니다.';
+      } else if(selectedCve) {
+        scopeNote.textContent='선택한 CVE의 공개 연도를 확인하지 못했습니다. 아래 수치는 2024년 공개 취약점을 분석한 고정 집단 통계이며 개별 CVE의 악용 확률이 아닙니다.';
+      } else {
+        scopeNote.textContent='수동으로 입력한 점수에 대응하는 2024년 공개 CVE 연구 집단의 통계입니다. 특정 CVE를 조회하거나 그 악용 확률을 계산한 결과가 아닙니다.';
+      }
     }
     $('advice-title').textContent=result.title;
     $('advice-text').textContent=result.advice;
