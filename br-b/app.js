@@ -24,7 +24,7 @@
     const item = event.detail;
     if(item && /^CVE-\d{4}-\d{4,}$/i.test(String(item.id||''))) selectedCve = item;
   });
-  document.querySelectorAll('[data-score]').forEach(button => button.addEventListener('click',function(){score.value=button.dataset.score;error.textContent='';score.removeAttribute('aria-invalid');reset();score.focus();}));
+  document.querySelectorAll('[data-score]').forEach(button => button.addEventListener('click',function(){clearSelectedCve();score.value=button.dataset.score;error.textContent='';score.removeAttribute('aria-invalid');reset();score.focus();}));
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     const result = core.analyze(score.value,kev.value);
@@ -49,6 +49,32 @@
       $('current-cve-title').textContent='CVE 조회 정보 없음';
       $('current-cve-detail').textContent='CVSS v3.1 '+result.score.toFixed(1)+'점 ('+result.group.name+') · '+kevLabel;
       $('current-cve-date').textContent='실제 대상 CVE의 점수와 KEV 상태를 확인해 주세요.';
+    }
+    // Distinguish current public CVE information from the historical 2024 paper.
+    const scopeHeading=$('result-scope-heading');
+    const scopeMessage=$('result-scope-message');
+    const banner=$('result-scope-banner');
+    const publishedForBanner=selectedCve && typeof selectedCve.published==='string'?selectedCve.published:'';
+    const yearForBanner=/^(\\d{4})-/.exec(publishedForBanner);
+    const cvYear=yearForBanner?Number(yearForBanner[1]):null;
+    if(scopeHeading && scopeMessage && banner) {
+      if(selectedCve && cvYear && cvYear!==2024) {
+        scopeHeading.textContent='분석 범위 주의 · 현재 '+cvYear+'년 CVE / 2024년 연구';
+        scopeMessage.textContent='현재 취약점의 CVSS·KEV 정보와 2024년에 공개된 CVE 32,102건의 연구 통계는 서로 다른 데이터입니다. 아래 '+result.rate.toFixed(5)+'%는 '+cvYear+'년에 공개된 이 CVE의 악용 확률이 아닙니다.';
+        banner.dataset.scope='different-year';
+      } else if(selectedCve && cvYear===2024) {
+        scopeHeading.textContent='같은 공개 연도라도 연구 표본 포함 여부는 미확인';
+        scopeMessage.textContent='검색한 CVE의 공개 연도는 2024년입니다. 다만 논문에 포함된 32,102건 중 하나인지 별도로 확인하지 않았으며, 아래 집단 등재 비율은 개별 CVE의 악용 확률이 아닙니다.';
+        banner.dataset.scope='same-year';
+      } else if(selectedCve) {
+        scopeHeading.textContent='공개 연도 확인 불가 · 2024년 연구와 구분';
+        scopeMessage.textContent='현재 공개 자료에서 이 CVE의 공개 연도를 확인하지 못했습니다. 아래 수치는 2024년 연구 표본의 집단별 통계이며 이 CVE의 악용 확률이 아닙니다.';
+        banner.dataset.scope='unknown-year';
+      } else {
+        scopeHeading.textContent='수동 입력 · 현재 CVE 조회값 아님';
+        scopeMessage.textContent='직접 입력한 점수와 KEV 상태를 기반으로 2024년 논문의 심각도별 통계를 참고합니다. 자동으로 조회한 CVE 정보나 개별 악용 확률이 아닙니다.';
+        banner.dataset.scope='manual';
+      }
     }
     const scopeNote=$('paper-scope-explain');
     if(scopeNote){
