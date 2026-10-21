@@ -34,6 +34,10 @@
    link.target='_blank';link.rel='noopener noreferrer';
    selected.append(h,source,description,caution,link);
    selected.hidden=false;
+   window.dispatchEvent(new CustomEvent('vulnpriority:cve-selected',{detail:{
+     id:item.id, published:item.published||null, kevDate:item.kevDate||null,
+     kevStatus:item.kevStatus||'unknown', cvssV31:item.cvssV31||null
+   }}));
    feedback.textContent=item.id+' 선택 완료. '+(hasScore?'점수와 KEV 상태를 아래 입력란에 채웠습니다.':'CVSS v3.1 점수가 없어 아래 수동 점수는 비워 두었습니다.');
    document.getElementById('check-form').scrollIntoView({behavior:'smooth',block:'center'});
    if(hasScore)score.focus({preventScroll:true});
