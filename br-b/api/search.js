@@ -74,10 +74,32 @@ async function lookup(query,{getNvd=fetchJSON,getKev=getKEV}={}) {
   const [nv,kv]=await Promise.allSettled([getNvd(url,12000),getKev()]);
   const catalog=kv.status==='fulfilled'?kv.value:null;
   if(nv.status==='fulfilled'&&Array.isArray(nv.value.vulnerabilities)) {
-    const entries=nv.value.vulnerabilities.map(row=>record(row.cve||{},catalog));
-    return {status:200,query:q,totalResults:nv.value.totalResults??entries.length,items:entries,mode:'nvd',
+    // NVD CVE API 2.0 sorts by ascending published date.
+    // Fetch the final page so that keyword searches show the newest CVEs first.
+    // Preserve the initial results if NVD rate limits the second request.
+    const total=Math.max(0,Number(nv.value.totalResults)||nv.value.vulnerabilities.length);
+    let page=nv.value.vulnerabilities;
+    let latestPageVerified=true;
+    if(!id&&total>page.length) {
+      const pageSize=15;
+      const offset=Math.max(0,total-pageSize);
+      const lastParams=new URLSearchParams(params);
+      lastParams.set('startIndex',String(offset));
+      try {
+        const last=await getNvd(NVD+'?'+lastParams.toString(),12000);
+        if(!Array.isArray(last?.vulnerabilities)||!last.vulnerabilities.length)throw new Error('Last NVD page unavailable');
+        page=last.vulnerabilities;
+      } catch(e) {
+        latestPageVerified=false;
+      }
+    }
+    const entries=page.slice().reverse().map(row=>record(row.cve||{},catalog));
+    const warnings=[];
+    if(!latestPageVerified)warnings.push('NVD 최근 항목 페이지에 연결하지 못해 일부 오래된 결과가 표시될 수 있습니다. 잠시 후 다시 검색해 주세요.');
+    if(!catalog)warnings.push('KEV 원본 연결이 원활하지 않아 일부 항목은 등재 상태를 확인하지 못했습니다.');
+    return {status:200,query:q,totalResults:total,items:entries,mode:'nvd',
       kevChecked:Boolean(catalog),kevVersion:catalog?.version||null,
-      notice:catalog?null:'KEV 원본 연결이 원활하지 않아 일부 항목은 등재 상태를 확인하지 못했습니다.'};
+      notice:warnings.length?warnings.join(' '):null};
   }
   if(catalog) {
     const items=searchKEV(catalog,q);
