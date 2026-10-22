@@ -26,6 +26,18 @@
     .card{background:var(--paper);border:1px solid #f0e4ce;border-radius:23px;padding:25px 23px;box-shadow:var(--shadow)}
     .feature-icon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:#fff0bd;font-size:1.7rem;margin-bottom:18px}
     .card h3{margin:0 0 11px;font-size:1.16rem}.card p{margin:0;color:#647187;line-height:1.7;font-size:.94rem}
+    .cert-tools{display:grid;grid-template-columns:minmax(0,1fr) minmax(170px,210px);gap:12px;margin-top:23px}
+    .cert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:19px 0 0}
+    .cert-card{border:1px solid #eadfcf;border-radius:17px;padding:20px;background:#fffefb;min-width:0}
+    .cert-card h3{font-size:1.03rem;letter-spacing:-.025em;margin:0 0 12px;overflow-wrap:anywhere}
+    .cert-meta{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+    .cert-meta span{font-size:.73rem;border-radius:99px;padding:5px 9px;background:#fff4d9;color:#715824;font-weight:700}
+    .cert-card p{line-height:1.65;font-size:.87rem;color:#5d6b7d;margin:8px 0}
+    .cert-skills{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+    .cert-skills span{font-size:.73rem;padding:5px 9px;background:#f1f5f9;color:#3e5879;border-radius:8px}
+    .cert-link{display:inline-block;font-size:.83rem;font-weight:750;text-underline-offset:4px;color:#1c5276;margin-top:5px}
+    .cert-count{color:#53637a;margin-top:17px;font-size:.88rem;font-weight:700}
+    .cert-empty{border:1px dashed #d8cba9;border-radius:15px;padding:25px;color:#697381;grid-column:1/-1;line-height:1.7}
     .step-num{font-size:.72rem;font-weight:850;background:#fff3ce;color:#81651f;border-radius:999px;padding:5px 10px;display:inline-block;margin-top:16px}
     .section-top{display:flex;align-items:center;gap:20px;justify-content:space-between;flex-wrap:wrap;margin:36px 0 24px}
     .heading-kicker{font-weight:900;color:#bb7100;font-size:.8rem;letter-spacing:.03em}.page-title{font-size:clamp(1.8rem,3.4vw,2.65rem);letter-spacing:-.07em;line-height:1.2;margin:8px 0 0}.page-intro{color:var(--muted);line-height:1.8;margin:11px 0 0}
@@ -46,7 +58,7 @@
     footer{padding:34px 0;margin-top:30px;border-top:1px solid #eee4d2;color:#7a808b;font-size:.82rem;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
     .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
     @media(max-width:850px){.top{height:auto;min-height:80px;flex-wrap:wrap;padding-top:17px;padding-bottom:16px;gap:16px}.topnav{order:3;width:100%;justify-content:space-between;overflow-x:auto}.nav{font-size:.85rem;padding:10px 12px}.hero{grid-template-columns:1fr;padding:35px 0 40px;gap:30px}.hero-art{width:min(90%,400px);min-height:0}.cards,.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}}
-    @media(max-width:530px){.wrap{padding:0 16px}.hero h1{font-size:2.7rem}.hero-art{width:min(96%,370px)}.cards,.timeline,.two-col{grid-template-columns:1fr}.sheet{padding:20px}.status{font-size:.7rem}.card{padding:23px}.actions>*{width:100%}.topnav{gap:1px}.nav{padding:11px 8px}}
+    @media(max-width:530px){.cert-tools,.cert-grid{grid-template-columns:1fr}.wrap{padding:0 16px}.hero h1{font-size:2.7rem}.hero-art{width:min(96%,370px)}.cards,.timeline,.two-col{grid-template-columns:1fr}.sheet{padding:20px}.status{font-size:.7rem}.card{padding:23px}.actions>*{width:100%}.topnav{gap:1px}.nav{padding:11px 8px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
@@ -58,6 +70,7 @@
       <button type="button" class="nav" data-go="home" aria-current="page">홈</button>
       <button type="button" class="nav" data-go="analyze">채용공고</button>
       <button type="button" class="nav" data-go="profile">내 역량</button>
+      <button type="button" class="nav" data-go="certifications">자격증</button>
       <button type="button" class="nav" data-go="roadmap">로드맵</button>
     </nav>
   </header>
@@ -114,6 +127,24 @@
         <div id="profile-message" class="message" role="status" aria-live="polite"></div>
       </form>
     </section>
+
+    <section id="certifications" class="panel" hidden aria-labelledby="certifications-title">
+      <div class="section-top">
+        <div><span class="heading-kicker">03 · 자격증 DB</span>
+        <h1 class="page-title" id="certifications-title">자격증을 찾아볼까요?</h1>
+        <p class="page-intro">작성해 주신 IT·정보보안 분야 자격증 23개를 이름·분야·관련 역량으로 검색합니다.</p></div>
+        <span class="pill">사용자 제공 자료 · 공식 검증 전</span>
+      </div>
+      <div class="sheet">
+        <div class="info"><b>🔎 검색 기능은 동작하지만, 아직 AI 자격증 추천은 아닙니다.</b><br>목록의 자격 구분·시행기관·응시자격 등은 사용자 엑셀에 입력된 <strong>검증 전 정보</strong>입니다. 최신 공식 자료 확인 후 확정되며, 자격증 보유 여부만으로 채용 요건을 충족한다고 판단하지 않습니다.</div>
+        <div class="cert-tools">
+          <div><label class="label" for="cert-search">자격증명 또는 관련 역량 검색</label><input id="cert-search" type="text" autocomplete="off" placeholder="예: CPPG, Linux, 개인정보보호, 네트워크"></div>
+          <div><label class="label" for="cert-field">관련 분야 선택</label><select id="cert-field"><option value="">전체 분야</option></select></div>
+        </div>
+        <div class="cert-count" id="cert-count" role="status" aria-live="polite">자격증 목록을 불러오는 중입니다.</div>
+        <div class="cert-grid" id="cert-results" aria-label="자격증 검색 결과"></div>
+      </div>
+    </section>
     <section id="roadmap" class="panel" hidden aria-labelledby="roadmap-title">
       <div class="section-top"><div><span class="heading-kicker">03 · 취업 준비 로드맵</span><h1 class="page-title" id="roadmap-title">막막한 준비를 차근차근</h1><p class="page-intro">준비 순서는 채용공고의 필수조건과 실제 보유역량을 확인한 뒤 정해집니다.</p></div><span class="pill">로드맵 생성 기능 개발 예정</span></div>
       <div class="sheet"><div class="info"><b>아직 개인별 추천 결과는 없습니다.</b><br>아래 흐름은 서비스 설계도이며, 현재 사용자의 준비 상태를 평가한 결과가 아닙니다.</div>
@@ -130,13 +161,13 @@
   <script>
     (function () {
       "use strict";
-      var pages=["home","analyze","profile","roadmap"];
+      var pages=["home","analyze","profile","certifications","roadmap"];
       var nodes=document.querySelectorAll("[data-go]");
       function show(page) {
         if(pages.indexOf(page)===-1) page="home";
         pages.forEach(function(id){document.getElementById(id).hidden=id!==page;});
         nodes.forEach(function(b){if(b.classList.contains("nav")){if(b.dataset.go===page)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");}});
-        document.title=(page==="home"?"뭐따지?":({analyze:"채용공고 입력",profile:"내 역량",roadmap:"준비 로드맵"}[page])+" | 뭐따지?");
+        document.title=(page==="home"?"뭐따지?":({analyze:"채용공고 입력",profile:"내 역량",certifications:"자격증 찾기",roadmap:"준비 로드맵"}[page])+" | 뭐따지?");
         window.scrollTo({top:0,behavior:"instant"});
       }
       function route(){show(location.hash.replace("#",""))}
@@ -162,6 +193,61 @@
         var filled=ids.filter(function(id){return !!document.getElementById(id).value.trim()}).length;
         if(!filled){message("profile-message","최소한 한 항목을 입력해 주세요.",true);return;}
         message("profile-message","입력한 5개 항목 중 "+filled+"개 항목을 확인했습니다.\n현재는 저장·매칭 기능이 연결되지 않았습니다. 새로고침하면 입력 내용이 사라집니다.",false);
+      });
+
+      // Static, user-provided catalog only. No claim of official validation or job eligibility.
+      var certSearch=document.getElementById("cert-search");
+      var certField=document.getElementById("cert-field");
+      var certResults=document.getElementById("cert-results");
+      var certCount=document.getElementById("cert-count");
+      var certifications=[];
+      function normal(text){return String(text==null?"":text).normalize("NFKC").toLocaleLowerCase("ko-KR").trim();}
+      function el(name,className,value){
+        var node=document.createElement(name);if(className)node.className=className;
+        if(value!=null)node.textContent=String(value);return node;
+      }
+      function renderCertifications(){
+        var query=normal(certSearch.value);
+        var field=certField.value;
+        var matches=certifications.filter(function(item){
+          if(field&&item.field!==field)return false;
+          var parts=[item.name,item.aliases,item.field,item.skills,item.job_roles,item.description,item.organization];
+          return !query||normal(parts.join(" ")).includes(query);
+        });
+        certResults.replaceChildren();
+        certCount.textContent="전체 "+certifications.length+"개 중 "+matches.length+"개 표시 · 모두 공식 정보 확인 전";
+        if(!matches.length){certResults.appendChild(el("div","cert-empty","검색 결과가 없습니다. 다른 키워드나 분야로 다시 찾아보세요."));return;}
+        matches.forEach(function(item){
+          var card=el("article","cert-card");
+          card.appendChild(el("h3","",item.name));
+          var meta=el("div","cert-meta");
+          meta.appendChild(el("span","",item.field||"분야 미확인"));
+          meta.appendChild(el("span","",item.type||"분류 미확인"));
+          card.appendChild(meta);
+          if(item.description)card.appendChild(el("p","",item.description));
+          if(item.organization)card.appendChild(el("p","","입력된 시행·발급기관: "+item.organization));
+          var skills=String(item.skills||"").split(";").map(function(x){return x.trim()}).filter(Boolean).slice(0,7);
+          if(skills.length){var tags=el("div","cert-skills");skills.forEach(function(s){tags.appendChild(el("span","",s))});card.appendChild(tags)}
+          if(/^https:\/\/[a-z0-9.-]+(?:\/|$)/i.test(String(item.official_url||""))){
+            var a=el("a","cert-link","입력된 운영기관 웹사이트 ↗");
+            a.href=item.official_url;a.target="_blank";a.rel="noopener noreferrer";card.appendChild(a);
+          }
+          card.appendChild(el("p","","※ 자격 분류·운영기관·관련 역량은 검증 전 사용자 입력값"));
+          certResults.appendChild(card);
+        });
+      }
+      certSearch.addEventListener("input",renderCertifications);
+      certField.addEventListener("change",renderCertifications);
+      fetch("./data/certifications.json").then(function(response){
+        if(!response.ok)throw new Error("HTTP "+response.status);return response.json();
+      }).then(function(data){
+        if(!data||!Array.isArray(data.certifications)||data.certifications.length!==23||data.certifications.some(function(c){return !c.name||c.verification_status!=="needs_official_review"}))throw new Error("잘못된 DB 구조");
+        certifications=data.certifications;
+        Array.from(new Set(certifications.map(function(c){return c.field}).filter(Boolean))).sort(function(a,b){return a.localeCompare(b,"ko")}).forEach(function(field){var option=el("option","",field);option.value=field;certField.appendChild(option)});
+        renderCertifications();
+      }).catch(function(){
+        certCount.textContent="자격증 DB를 불러올 수 없습니다.";
+        certResults.replaceChildren(el("div","cert-empty","자격증 데이터를 불러오지 못했습니다. 페이지를 새로고침한 후 다시 시도해 주세요."));
       });
     })();
   </script>
